@@ -57,12 +57,12 @@ class Diretory extends Component {
                     />
                 ))} */}
 
-{this.state.sections.map(({ id, ...otherSectionProps }) => (
+                {this.state.sections.map(({ id, ...otherSectionProps }) => (
                     <MenuItem
                         key={id}
-                         {
-                            ...otherSectionProps
-                         }
+                        {
+                        ...otherSectionProps
+                        }
                     />
                 ))}
             </div>
