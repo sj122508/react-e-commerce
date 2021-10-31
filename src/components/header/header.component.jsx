@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { auth } from "../../firebase/firebase.utils";
 
@@ -32,4 +33,12 @@ const Header = ({ currentUser }) => (
     </div>
 )
 
-export default Header;
+// THIS mapStateToProps CAN BE NAME ANYTHING
+// THE state HERE is STATE IN root-reducer
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+// connect IS HOC THAT CONNECT MASTER STATE IN COMPONENT WITH SUPPLIED AND UPDATED STATE PASS FROM mapStateToProps
+export default connect(mapStateToProps)(Header);
+
