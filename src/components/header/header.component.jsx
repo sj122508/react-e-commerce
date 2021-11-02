@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { auth } from "../../firebase/firebase.utils";
+import { selectCartHidden } from "../../redux/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import { ReactComponent as Logo } from '../../../src/assets/crown.svg';
 
@@ -39,16 +42,16 @@ const Header = ({ currentUser, hidden }) => (
     </div>
 )
 
-// THIS mapStateToProps CAN BE NAME ANYTHING
-// THE state HERE is STATE IN root-reducer
-const mapStateToProps = (
-    {
-        user: { currentUser },
-        cart: { hidden }
-    }
-) => ({
-    currentUser,
-    hidden
+// // THIS mapStateToProps CAN BE NAME ANYTHING
+// // THE state HERE is STATE IN root-reducer
+// const mapStateToProps = (state) => ({
+//     currentUser : selectCurrentUser(state),
+//     hidden: selectCartItems(state)
+// })
+
+const mapStateToProps = createStructuredSelector({
+    currentUser : selectCurrentUser,
+    hidden: selectCartHidden
 })
 
 // connect IS HOC THAT CONNECT MASTER STATE IN COMPONENT WITH SUPPLIED AND UPDATED STATE PASS FROM mapStateToProps
